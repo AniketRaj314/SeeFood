@@ -10,18 +10,18 @@ function setup() {
     height = innerHeight - 4;
     createCanvas(width, height);
 
-    // options = {
-    //     video: {
+    options = {
+        video: {
 
-    //         facingMode: {
-    //             exact: "environment"
-    //         }
-    //     }
-    // };
+            facingMode: {
+                exact: "environment"
+            }
+        }
+    };
     food = 'Please wait for results';
     videoWidth = 320;
     videoHeight = 260;
-    video = createCapture(VIDEO);
+    video = createCapture(options);
     video.size(videoWidth, videoHeight);
     video.hide();
     flg = 0;
