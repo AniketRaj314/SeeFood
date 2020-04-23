@@ -1,5 +1,5 @@
 let width, height, classifier, video, flippedVideo, food;
-let videoWidth, videoHeight, options;
+let videoWidth, videoHeight, options, clickPhoto, flg;
 
 function preload() {
     classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/VS4ynlmiX/model.json')
@@ -18,13 +18,17 @@ function setup() {
     //         }
     //     }
     // };
-
+    food = 'Please wait for results';
     videoWidth = 320;
     videoHeight = 260;
     video = createCapture(VIDEO);
     video.size(videoWidth, videoHeight);
     video.hide();
+    flg = 0;
 
+    clickPhoto = createButton("Take a picture");
+    clickPhoto.position(width / 2 - 45, height - 100);
+    clickPhoto.mousePressed(displayResult);
     flippedVideo = ml5.flipImage(video);
 
     classifyVideo();
@@ -34,7 +38,18 @@ function draw() {
     background(255, 0, 0);
     displayText();
     imageMode(CENTER);
+    if(flg) {
+        displayResult();
+    }
     image(flippedVideo, width / 2, height / 2, videoWidth, videoHeight);
+}
+
+function displayResult() {
+    fill(255);
+    textSize(32);
+    text(food, width / 2 - 60, height - 130);
+    flg = 1;
+    noLoop();
 }
 
 function displayText() {
@@ -44,7 +59,7 @@ function displayText() {
     textSize(24);
     text('Shazam for Food!', width / 2 - 95, 150);
     textSize(16);
-    text('Cas', width / 2 - 60, height / 2);
+    text('Loading Camera...', width / 2 - 60, height / 2);
 }
 
 function classifyVideo() {
