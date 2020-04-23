@@ -59,7 +59,7 @@ function displayText() {
     textSize(24);
     text('Shazam for Food!', width / 2 - 95, 150);
     textSize(16);
-    text('Loading Camera...', width / 2 - 60, height / 2);
+    text('Loading Camera....', width / 2 - 60, height / 2);
 }
 
 function classifyVideo() {
